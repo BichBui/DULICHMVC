@@ -1,0 +1,72 @@
+﻿ @model IEnumerable<DULICH.Models.Tour_gia>
+
+    @{
+        ViewData["Title"] = "Listgia";
+    }
+
+    <h1>Danh sách bảng giá Tour</h1>
+
+    @*<div>
+        <p>Chọn Tour</p>
+        <tr class="row">
+            <td>
+                @Html.DropDownList("tour", (IEnumerable<SelectListItem>)ViewBag.ToursList, new { @class = "form-control" })
+            </td>
+            <td>
+                <button>Xem</button>
+            </td>
+            <td>
+                <button> <a asp-action="Create">Thêm giá mới</a></button>
+            </td>
+
+        </tr>
+    </div>*@
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    Giá Tour
+                </th>
+                <th>
+                    Từ ngày
+                </th>
+                <th>
+                    Đến ngày
+                </th>
+                <th>
+
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.gia_id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.gia_sotien)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.gia_tungay)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.gia_denngay)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.gia_id">Edit</a>
+                    </td>
+
+                </tr>
+            }
+        <td>
+            <a asp-area="" asp-controller="Trangchu" asp-action="ListTours">Quay lại</a>
+        </td>
+        </tbody>
+    </table>
+
