@@ -1,0 +1,62 @@
+﻿
+<h1>Lập danh sách đoàn theo Tour</h1>
+<div>Chọn tour:</div>
+@Html.DropDownList("tour", (IEnumerable<SelectListItem>)ViewBag.tourslist, "--Chọn Tour--", new { @class = "form-control" })
+
+<div>Chọn đoàn:</div>
+<select id="doan" name="doan" class="form-control" asp-items="@(new SelectList(string.Empty, "Value", "Text"))"></select>
+<td>
+    <div>Danh sách nhân viên:</div>
+    <select id="nhanvien" class="form-control" asp-items="@(new SelectList(string.Empty, "Value", "Text"))"></select>
+    <datalist id="nhanvienlist" class="form-control" ></datalist>
+</td>
+<td>
+    <div>Danh sách khách hàng:</div>
+    <select id="khachhang" class="form-control" asp-items="@(new SelectList(string.Empty, "Value", "Text"))"></select>
+    <textarea></textarea>
+</td>
+<button>Lưu thông tin</button>
+<script src="~/js/jquery-1.10.2.min.js"></script>
+
+<script>
+    $(function () {
+        $("#tour").change(function () {
+            $.getJSON("/Trangchu/GetDoanList", { tour_id: $("#tour").val() }, function (d) {
+                var row = "";
+                $("#doan").empty();
+                $.each(d, function (i, v) {
+                    row += "<option value=" + v.value + ">" + v.text + "</option>";
+
+                });
+                $("#doan").html(row);
+            })
+        })
+        $("#doan").change(function () {
+            $.getJSON("/Trangchu/GetNhanvienList", function (d) {
+                var row = "";
+                $("#nhanvien").empty();
+                $.each(d, function (i, v) {
+                    row += "<option value=" + v.value + ">" + v.text + "</option>";
+
+                });
+                $("#nhanvien").html(row);
+            })
+        })
+        $("#doan").change(function () {
+            $.getJSON("/Trangchu/GetKhachhangList", function (d) {
+                var row = "";
+                $("#khachhang").empty();
+                $.each(d, function (i, v) {
+                    row += "<option value=" + v.value + ">" + v.text + "</option>";
+
+                });
+                $("#khachhang").html(row);
+            })
+        })
+        $("#nhanvien").change(function () {
+            var row = $("#nhanvien").row();
+        }); $("#nhanvien").html(row);
+    })
+</script>
+
+

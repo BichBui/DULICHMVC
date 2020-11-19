@@ -682,3 +682,5 @@ C:\Users\DELL\Desktop\DULICH\obj\Debug\netcoreapp3.1\Razor\Views\Trangchu\Chitie
 C:\Users\DELL\Desktop\DULICH\obj\Debug\netcoreapp3.1\Razor\Views\Tour_gia\Listgia.cshtml.g.cs
 C:\Users\DELL\Desktop\DULICH\obj\Debug\netcoreapp3.1\Razor\Views\Trangchu\DoanhthuTour.cshtml.g.cs
 C:\Users\DELL\Desktop\DULICH\obj\Debug\netcoreapp3.1\Razor\Views\Trangchu\ChitietDoanhthuTour.cshtml.g.cs
+C:\Users\DELL\Desktop\DULICH\obj\Debug\netcoreapp3.1\Razor\Views\Trangchu\DSDoanTour.cshtml.g.cs
+C:\Users\DELL\Desktop\DULICH\obj\Debug\netcoreapp3.1\Razor\Views\Trangchu\NhapChiphi.cshtml.g.cs

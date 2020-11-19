@@ -38,7 +38,7 @@ namespace DULICH.Controllers
                              on a.loai_id equals b.loai_id
                         select new ListTours
                         {
-                            tour_id =a.tour_id,
+                            tour_id = a.tour_id,
                             tour_ten = a.tour_ten,
                             tour_mota = a.tour_mota,
                             loai_ten = b.loai_ten,
@@ -75,7 +75,7 @@ namespace DULICH.Controllers
                          on b.gia_id equals d.gia_id
                          join e in _context.Tour_nguoidi
                          on b.doan_id equals e.doan_id
-                         select new 
+                         select new
                          {
                              a.tour_id,
                              a.tour_ten,
@@ -87,27 +87,27 @@ namespace DULICH.Controllers
                              e.nguoidi_dskhach
                          };
 
-            
+
             int sl = 20;
             var model = from a in model1
-                            group a by new { a.tour_id, a.tour_ten } into g
-                            select new DoanhthuTour()
-                            {
-                                tour_id = g.Key.tour_id,
-                                tour_ten = g.Key.tour_ten,
-                                tong_doan = g.Count(),
-                                tong_doanhthu = g.Sum(i => i.gia_sotien) * sl,
-                                tong_chiphi = g.Sum(i => i.chiphi_total),
-                                lai= g.Sum(i => i.gia_sotien) * sl - g.Sum(i => i.chiphi_total)
-                            };
-            
-                return View(model);
-            
+                        group a by new { a.tour_id, a.tour_ten } into g
+                        select new DoanhthuTour()
+                        {
+                            tour_id = g.Key.tour_id,
+                            tour_ten = g.Key.tour_ten,
+                            tong_doan = g.Count(),
+                            tong_doanhthu = g.Sum(i => i.gia_sotien) * sl,
+                            tong_chiphi = g.Sum(i => i.chiphi_total),
+                            lai = g.Sum(i => i.gia_sotien) * sl - g.Sum(i => i.chiphi_total)
+                        };
+
+            return View(model);
+
 
         }
         public async Task<IActionResult> ChiTietDoanhthuTour(int? id)
         {
-            
+
             int sl = 20;
             var model = from a in _context.Tours
                         join b in _context.Tour_doan
@@ -125,30 +125,62 @@ namespace DULICH.Controllers
                             doan_ten = b.doan_name,
                             sokhach = sl,
                             giatour = d.gia_sotien,
-                            doanhthu= d.gia_sotien*sl,
+                            doanhthu = d.gia_sotien * sl,
                             chiphi = c.chiphi_total,
-                            lai= d.gia_sotien * sl- c.chiphi_total
+                            lai = d.gia_sotien * sl - c.chiphi_total
                         };
             return View(model);
         }
-        /*public async Task<IActionResult> DSDoanTour()
+        public async Task<IActionResult> NhapChiphi()
         {
-            
-            List < Tours > tours = _context.Tours.ToList();
+            return View();
+        }
+
+        public async Task<IActionResult> DSDoanTour()
+        {
+
+            List<Tours> tours = _context.Tours.ToList();
             SelectList tourslist = new SelectList(tours, "tour_id", "tour_ten");
             ViewBag.tourslist = tourslist;
             List<Tour_doan> tour_doan = _context.Tour_doan.ToList();
             SelectList tour_doanlist = new SelectList(tour_doan, "doan_id", "doan_name");
             ViewBag.tour_doanlist = tour_doanlist;
-            
             return View();
         }
         public JsonResult GetDoanList(int tour_id)
         {
-            List<Tour_doan> tour_doan = _context.Tour_doan.ToList();
-            SelectList tour_doanlist = new SelectList(tour_doan, "doan_id", "doan_name");
-            ViewBag.tour_doanlist = tour_doanlist;
-            return Json(tour_doanlist);
-        }*/
+            List<SelectListItem> list = new List<SelectListItem>();
+            var tour_doan = _context.Tour_doan.Where(x => x.tour_id == tour_id);
+            foreach (var item in tour_doan)
+            {
+                list.Add(new SelectListItem { Text = item.doan_name, Value = item.doan_id.ToString() });
+            }
+
+            return Json(list);
+
+        }
+        public JsonResult GetNhanvienList()
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            var nhanvien = _context.Tour_nhanvien;
+            foreach (var item in nhanvien)
+            {
+                list.Add(new SelectListItem { Text = item.nv_ten, Value = item.nv_id.ToString() });
+            }
+
+            return Json(list);
+
+        }
+        public JsonResult GetKhachhangList()
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            var khachhang = _context.Tour_khachhang;
+            foreach (var item in khachhang)
+            {
+                list.Add(new SelectListItem { Text = item.kh_ten, Value = item.kh_id.ToString() });
+            }
+
+            return Json(list);
+        }
     }
 }

@@ -1,0 +1,46 @@
+﻿<div>
+    <h4>Nhập chi phí chuyến đi Tour</h4>
+    <p>Chọn Tour:</p>
+    @Html.DropDownList("tour", null, "--Chọn Tour--", new { @class = "form-control" })
+    <p>Chọn tên Đoàn:</p>
+    @Html.DropDownList("doan", null, "--Chọn tên đoàn--", new { @class = "form-control" })
+    <p>Loại chi phí:</p>
+    @Html.DropDownList("tour", null, "--Chọn loại chi phí--", new { @class = "form-control" })
+    <p>Hóa đơn:</p>
+    @Html.TextBox("hoadon", null, "--Nhập hóa đơn--", new { @class = "form-control" })
+    <p>Nội dung:</p>
+    @Html.TextBox("noidunghd", null, "--Nhập nội dung hóa đơn--", new { @class = "form-control" })
+    <p>Ngày hóa đơn:</p>
+    @Html.TextBox("ngayhd", null, "--Nhập ngày hóa đơn", new { @type = "date", @class = "form-control" })
+    <p>Số tiền:</p>
+    @Html.TextBox("sotien", null, "--Nhập số tiền--", new { @class = "form-control" })
+    <button>Lưu thông tin</button>
+</div>
+<div>
+    <h4>Chi tiết chi phí</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    Hóa đơn
+                </th>
+                <th>
+                    Loại chi phí
+                </th>
+                <th>
+                    Tên chi phí
+                </th>
+                <th>
+                    Số tiền
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            
+        </tbody>
+    </table>
+    <p>Tổng tiền: </p>
+</div>
