@@ -165,12 +165,13 @@ namespace DULICH.Controllers
             var nhanvien = _context.Tour_nhanvien;
             foreach (var item in nhanvien)
             {
-                list.Add(new SelectListItem { Text = item.nv_ten, Value = item.nv_id.ToString() });
+                list.Add(new SelectListItem { Text = item.nv_ten, Value = item.nv_id.ToString()});
             }
 
             return Json(list);
 
         }
+        
         public JsonResult GetKhachhangList()
         {
             List<SelectListItem> list = new List<SelectListItem>();

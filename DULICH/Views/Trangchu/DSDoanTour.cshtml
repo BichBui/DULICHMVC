@@ -7,13 +7,13 @@
 <select id="doan" name="doan" class="form-control" asp-items="@(new SelectList(string.Empty, "Value", "Text"))"></select>
 <td>
     <div>Danh sách nhân viên:</div>
-    <select id="nhanvien" class="form-control" asp-items="@(new SelectList(string.Empty, "Value", "Text"))"></select>
-    <datalist id="nhanvienlist" class="form-control" ></datalist>
+    <select id="nhanvien"  multiple="multiple" class="form-control" asp-items="@(new SelectList(string.Empty, "Value", "Text"))"></select>
+    <p id="nhanvienlist" class="form-control" ></p>
 </td>
 <td>
     <div>Danh sách khách hàng:</div>
-    <select id="khachhang" class="form-control" asp-items="@(new SelectList(string.Empty, "Value", "Text"))"></select>
-    <textarea></textarea>
+    <select id="khachhang" multiple="multiple" class="form-control" asp-items="@(new SelectList(string.Empty, "Value", "Text"))"></select>
+    <p id="khachhanglist" class="form-control"></p>
 </td>
 <button>Lưu thông tin</button>
 <script src="~/js/jquery-1.10.2.min.js"></script>
@@ -42,21 +42,36 @@
                 $("#nhanvien").html(row);
             })
         })
+        
         $("#doan").change(function () {
             $.getJSON("/Trangchu/GetKhachhangList", function (d) {
                 var row = "";
                 $("#khachhang").empty();
                 $.each(d, function (i, v) {
                     row += "<option value=" + v.value + ">" + v.text + "</option>";
-
                 });
                 $("#khachhang").html(row);
             })
         })
-        $("#nhanvien").change(function () {
-            var row = $("#nhanvien").row();
-        }); $("#nhanvien").html(row);
+        
     })
 </script>
+<script>
+    $(document).ready(function () {
+        $('#nhanvien').change(function () {
+            var nhanvien = $('#nhanvien :selected').text();
+            $("#nhanvienlist").html(nhanvien);
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $('#khachhang').change(function () {
+            var khachhang = $('#khachhang :selected').text();
+            $("#khachhanglist").html(khachhang);
+        });
+    });
+</script>
+
 
 
