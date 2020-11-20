@@ -8822,19 +8822,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\DELL\\.nuget\\packages\\": {}
+    "C:\\Users\\ADMIN\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\DELL\\Desktop\\DULICH\\DULICH.csproj",
+      "projectUniqueName": "C:\\Users\\ADMIN\\Desktop\\3117410024_NguyenThiBangChau_DCT1174\\XDPMTMHPhanLop\\DuLich\\DULICH\\update255\\DULICH\\DULICH.csproj",
       "projectName": "DULICH",
-      "projectPath": "C:\\Users\\DELL\\Desktop\\DULICH\\DULICH.csproj",
-      "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\DELL\\Desktop\\DULICH\\obj\\",
+      "projectPath": "C:\\Users\\ADMIN\\Desktop\\3117410024_NguyenThiBangChau_DCT1174\\XDPMTMHPhanLop\\DuLich\\DULICH\\update255\\DULICH\\DULICH.csproj",
+      "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ADMIN\\Desktop\\3117410024_NguyenThiBangChau_DCT1174\\XDPMTMHPhanLop\\DuLich\\DULICH\\update255\\DULICH\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

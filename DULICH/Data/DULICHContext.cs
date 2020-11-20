@@ -25,6 +25,7 @@ namespace DULICH.Data
         public DbSet<Tour_loaichiphi> Tour_loaichiphi { get; set; }
         public DbSet<Tour_nguoidi> Tour_nguoidi { get; set; }
         public DbSet<Tour_nhanvien> Tour_nhanvien { get; set; }
+        public DbSet<HoaDon> HoaDon { get; set; }
 
     }
     

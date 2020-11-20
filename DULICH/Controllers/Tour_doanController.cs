@@ -46,6 +46,12 @@ namespace DULICH.Controllers
         // GET: Tour_doan/Create
         public IActionResult Create()
         {
+            List<Tours> tour_id = _context.Tours.ToList();
+            SelectList tourslist = new SelectList(tour_id, "tour_id", "tour_ten");
+            ViewBag.tourslist = tourslist;
+            List<Tour_gia> gia_id = _context.Tour_gia.ToList();
+            SelectList gialist = new SelectList(gia_id, "gia_id", "gia_sotien");
+            ViewBag.gialist = gialist;
             return View();
         }
 
@@ -54,14 +60,21 @@ namespace DULICH.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("doan_id,tour_id,gia_id,doan_name,doan_ngaydi,doan_ngayve,doan_chitietchuongtrinh")] Tour_doan tour_doan)
+        public async Task<IActionResult> Create(Tour_doan tour_doan)
         {
+            // string mes = "";
+             int tour = tour_doan.tour_id;
+            int gia = tour_doan.gia_id; 
             if (ModelState.IsValid)
             {
+                
                 _context.Add(tour_doan);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
+                //mes = tour_doan.doan_name;
             }
+
+            
             return View(tour_doan);
         }
 

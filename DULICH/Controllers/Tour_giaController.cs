@@ -53,6 +53,9 @@ namespace DULICH.Controllers
         // GET: Tour_gia/Create
         public IActionResult Create()
         {
+            List<Tours> tour_id = _context.Tours.ToList();
+            SelectList tourslist = new SelectList(tour_id, "tour_id", "tour_ten");
+            ViewBag.tourslist = tourslist;
             return View();
         }
 
@@ -61,8 +64,10 @@ namespace DULICH.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("gia_id,gia_sotien,tour_id,gia_tungay,gia_denngay")] Tour_gia tour_gia)
+        public async Task<IActionResult> Create(Tour_gia tour_gia)
         {
+            int tour = tour_gia.tour_id;
+
             if (ModelState.IsValid)
             {
                 _context.Add(tour_gia);

@@ -19,6 +19,36 @@ namespace DULICH.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("DULICH.Models.HoaDon", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("doan_id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("hoadon")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("loaichiphi_id")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ngaylap")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("noidung")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("sotien")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("HoaDon");
+                });
+
             modelBuilder.Entity("DULICH.Models.Tour_chiphi", b =>
                 {
                     b.Property<int>("chiphi_id")

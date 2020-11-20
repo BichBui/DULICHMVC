@@ -1,0 +1,82 @@
+﻿@model DULICH.Models.HoaDon
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>HoaDon</h4>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div>
+                Chọn Tour
+            </div>
+
+            @Html.DropDownList("tours", (IEnumerable<SelectListItem>)ViewBag.tourslist, "--Chọn Tour--", new { @class = "form-control" })
+            <div class="form-group">Chọn đoàn</div>
+
+            <select id="doan_id" asp-for="doan_id" class="form-control" asp-items="@(new SelectList(string.Empty, "Value", "Text"))"></select>
+
+            <div class="form-group">
+                <label class="control-label">Loại chi phí</label>
+                @Html.DropDownList("loaichiphi_id", (IEnumerable<SelectListItem>)ViewBag.chiphilist, "--Chọn Loại Chi Phi--", new { @class = "form-control" })
+
+            </div>
+            <div class="form-group">
+                <label class="control-label">Hóa đơn</label>
+                <input asp-for="hoadon" class="form-control" />
+
+            </div>
+            <div class="form-group">
+                <label class="control-label">Nội dung</label>
+                <input asp-for="noidung" class="form-control" />
+
+            </div>
+            <div class="form-group">
+                <label class="control-label">Ngày lập hóa đơn</label>
+                <input asp-for="ngaylap" class="form-control" />
+
+            </div>
+            <div class="form-group">
+                <label class="control-label">Số tiền </label>
+                <input asp-for="sotien" class="form-control" />
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<script src="~/js/jquery-1.10.2.min.js"></script>
+
+<script>
+    $(function () {
+        $("#tours").change(function () {
+            $.getJSON("/HoaDons/GetDoan", { tour_id: $("#tours").val() }, function (d) {
+                var row = "";
+                $("#doan_id").empty();
+                $.each(d, function (i, v) {
+                    row += "<option value=" + v.value + ">" + v.text + "</option>";
+
+                });
+                $("#doan_id").html(row);
+            })
+        })
+    })
+
+</script>

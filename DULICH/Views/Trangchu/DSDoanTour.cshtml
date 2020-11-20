@@ -7,13 +7,13 @@
 <select id="doan" name="doan" class="form-control" asp-items="@(new SelectList(string.Empty, "Value", "Text"))"></select>
 <td>
     <div>Danh sách nhân viên:</div>
-    <select id="nhanvien"  multiple="multiple" class="form-control" asp-items="@(new SelectList(string.Empty, "Value", "Text"))"></select>
-    <p id="nhanvienlist" class="form-control" ></p>
+    <select id="nhanvien" name="nhanvien" class="form-control" asp-items="@(new SelectList(string.Empty, "Value", "Text"))"></select>
+    <textarea id="nhanvienlist" multiple="multiple" class="form-control" ></textarea>
 </td>
 <td>
     <div>Danh sách khách hàng:</div>
-    <select id="khachhang" multiple="multiple" class="form-control" asp-items="@(new SelectList(string.Empty, "Value", "Text"))"></select>
-    <p id="khachhanglist" class="form-control"></p>
+    <select id="khachhang" class="form-control" asp-items="@(new SelectList(string.Empty, "Value", "Text"))"></select>
+    <textarea id="khachhanglist" multiple="multiple" class="form-control"></textarea>
 </td>
 <button>Lưu thông tin</button>
 <script src="~/js/jquery-1.10.2.min.js"></script>
@@ -58,16 +58,18 @@
 </script>
 <script>
     $(document).ready(function () {
+        var nhanvien = "";
         $('#nhanvien').change(function () {
-            var nhanvien = $('#nhanvien :selected').text();
+            nhanvien += $('#nhanvien :selected').text()+'\n';
             $("#nhanvienlist").html(nhanvien);
         });
     });
 </script>
 <script>
     $(document).ready(function () {
+        var khachhang = "";
         $('#khachhang').change(function () {
-            var khachhang = $('#khachhang :selected').text();
+            khachhang += $('#khachhang :selected').text()+'\n';
             $("#khachhanglist").html(khachhang);
         });
     });

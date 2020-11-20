@@ -1,0 +1,62 @@
+﻿@model DULICH.Models.Tour_doan
+
+@{
+    ViewData["Title"] = "DoanTour";
+}
+
+<h1>DoanTour</h1>
+
+<h4>Tour_doan</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="DoanTour" id="form">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Tên Tour</label>
+                @Html.DropDownList("tour", (IEnumerable<SelectListItem>)ViewBag.tourslist, "--Chọn Tour--", new { @class = "form-control" })
+
+            </div>
+            <div class="form-group">
+                <label class="control-label">Tên đoàn</label>
+                <input asp-for="doan_name" class="form-control" />
+                
+            </div>
+           
+            <div class="form-group">
+                <label class="control-label">Ngày đi</label>
+                <input asp-for="doan_ngaydi" class="form-control" />
+               
+            </div>
+            <div class="form-group">
+                <label class="control-label">Ngày về</label>
+                <input asp-for="doan_ngayve" class="form-control" />
+                
+            </div>
+            <div class="form-group">
+                <label class="control-label">Mô tả chuyến đi</label>
+                <textarea asp-for="doan_chitietchuongtrinh" class="form-control"></textarea>
+ 
+            </div>
+            <div>
+                <label class="control-label">Chọn giá tour</label>
+                @Html.DropDownList("gia", (IEnumerable<SelectListItem>)ViewBag.gialist, "--Chọn Giá--", new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<script>
+    $(function () {
+        $("#form").submit(function () {
+
+        })
+    })
+</script>

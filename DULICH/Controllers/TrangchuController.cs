@@ -165,7 +165,7 @@ namespace DULICH.Controllers
             var nhanvien = _context.Tour_nhanvien;
             foreach (var item in nhanvien)
             {
-                list.Add(new SelectListItem { Text = item.nv_ten, Value = item.nv_id.ToString()});
+                list.Add(new SelectListItem { Text = item.nv_ten+'-'+item.nv_nhiemvu, Value = item.nv_id.ToString()});
             }
 
             return Json(list);
@@ -183,5 +183,38 @@ namespace DULICH.Controllers
 
             return Json(list);
         }
+        public async Task<IActionResult> DoanTour()
+        {
+            List<Tours> tours = _context.Tours.ToList();
+            SelectList tourslist = new SelectList(tours, "tour_id", "tour_ten");
+            ViewBag.tourslist = tourslist;
+            List<Tour_gia> gia= _context.Tour_gia.ToList();
+            SelectList gialist = new SelectList(gia, "gia_id", "gia_sotien");
+            ViewBag.gialist = gialist;
+            return View();
+        }
+        public JsonResult GetGia()
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            var gia = _context.Tour_gia;
+            foreach (var item in gia)
+            {
+                list.Add(new SelectListItem { Text = item.gia_sotien.ToString(), Value = item.gia_id.ToString() });
+            }
+
+            return Json(list);
+        }
+        public JsonResult GetTour()
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            var tour = _context.Tours;
+            foreach (var item in tour)
+            {
+                list.Add(new SelectListItem { Text = item.tour_ten, Value = item.tour_id.ToString() });
+            }
+
+            return Json(list);
+        }
+        
     }
 }
